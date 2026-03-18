@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Fantastic Four: First Steps - A Retro-Futuristic Rebirth</title>
+    <style>
+        /* Color Palette & Variables */
+        :root {
+            --ff-blue: #0055a4;
+            --ff-light-blue: #00aaff;
+            --ff-white: #f8fafc;
+            --ff-dark: #0f172a;
+            --cosmic-gold: #fbbf24;
+            --thing-orange: #f97316;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+        }
+
+        /* Basic Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--ff-dark);
+            color: var(--text-main);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* Hero Header Section */
+        .hero {
+            position: relative;
+            height: 80vh;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.9)),
+                        url('BMN-01488_R.jpg');
+            background-size: cover;
+            background-position: center;
+            border-bottom: 3px solid var(--ff-blue);
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(to top, var(--ff-dark), transparent);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 0 20px;
+            animation: fadeIn 2s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, var(--ff-light-blue), var(--ff-white), var(--cosmic-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0px 10px 40px rgba(0, 85, 164, 0.4);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-weight: 600;
+        }
+
+        /* Article Images */
+        .article-image {
+            width: 100%;
+            margin: 40px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .article-image img {
+            width: 100%;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .article-image:hover img {
+            transform: scale(1.02);
+        }
+
+        .image-caption {
+            padding: 15px 20px;
+            background: rgba(15, 23, 42, 0.8);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-style: italic;
+        }
+
+        /* Gallery Grid */
+        .gallery-title {
+            text-align: center;
+            margin: 80px 0 40px;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            color: var(--ff-light-blue);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 60px;
+        }
+
+        .gallery-item {
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            border-color: var(--ff-light-blue);
+            transform: scale(1.03);
+            box-shadow: 0 10px 20px rgba(0, 170, 255, 0.2);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Main Article Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .article-meta span {
+            color: var(--ff-light-blue);
+        }
+
+        /* Typography */
+        h2 {
+            color: var(--text-main);
+            font-size: 2.2rem;
+            margin-top: 50px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+        }
+
+        h2::before {
+            content: '';
+            display: inline-block;
+            width: 5px;
+            height: 35px;
+            background: var(--ff-blue);
+            margin-right: 15px;
+            border-radius: 2px;
+            box-shadow: 0 0 10px var(--ff-blue);
+        }
+
+        p {
+            margin-bottom: 25px;
+            font-size: 1.15rem;
+            color: #cbd5e1;
+        }
+
+        /* Callout / Highlight Box */
+        .highlight-box {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(0, 170, 255, 0.2);
+            border-radius: 12px;
+            padding: 35px;
+            margin: 50px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--ff-light-blue);
+            box-shadow: 0 0 15px var(--ff-light-blue);
+        }
+
+        .highlight-box h3 {
+            color: var(--ff-light-blue);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        /* Grid for Cast Section */
+        .cast-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+            list-style: none;
+        }
+
+        .cast-grid li {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            border-radius: 8px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .cast-grid li:hover {
+            border-bottom: 2px solid var(--ff-light-blue);
+            transform: translateY(-5px);
+            background: rgba(0, 170, 255, 0.05);
+        }
+
+        .cast-grid li strong {
+            display: block;
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .cast-grid li span {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Quote Styling */
+        blockquote {
+            font-size: 1.4rem;
+            font-style: italic;
+            text-align: center;
+            margin: 60px auto;
+            max-width: 700px;
+            color: var(--cosmic-gold);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: #030811;
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 60px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1rem; }
+            h2 { font-size: 1.8rem; }
+            p { font-size: 1.05rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Banner -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>The Fantastic Four: First Steps</h1>
+            <p>Our World is About to Change</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        
+        <div class="article-meta">
+            <div>By <span>Marvel Cinematic Insights</span></div>
+            <div>Phase Six Preview</div>
+        </div>
+
+        <article>
+            <p>The Marvel Cinematic Universe is finally welcoming its first family. <strong>The Fantastic Four: First Steps</strong> promises to be more than just another superhero origin story. Directed by Matt Shakman (<em>WandaVision</em>), the film transports us to a vibrant, retro-futuristic 1960s that feels both nostalgic and ahead of its time.</p>
+
+            <h2>A New Vision for New York</h2>
+            <div class="article-image">
+                <img src="BMN-11534_R.jpg" alt="Fantastic Four Set Photo">
+                <p class="image-caption">The film's production design leans heavily into the 1960s "World of Tomorrow" aesthetic.</p>
+            </div>
+            <p>Unlike previous iterations, <em>First Steps</em> is reportedly set in an alternate reality version of the 1960s. This allows the production to lean into a specific "Googie" architectural style and a optimistic, cosmic-age aesthetic that defines the team's early comic book adventures by Stan Lee and Jack Kirby.</p>
+            
+            <p>The title "First Steps" suggests a focus on exploration and discovery. The Fantastic Four have always been adventurers first and superheroes second, and Shakman seems intent on recapturing that sense of wonder as the team ventures into the Unknown, the Negative Zone, and beyond.</p>
+
+            <blockquote>
+                "This isn't your typical MCU New York. It's a city built on the dreams of the space age."
+            </blockquote>
+
+            <h2>The Family Dynamic</h2>
+            <p>At the heart of the film is the chemistry between the four leads. Pedro Pascal leads the team as <strong>Reed Richards</strong>, bringing a fatherly yet obsessive brilliance to Mr. Fantastic. Vanessa Kirby portrays <strong>Sue Storm</strong>, often described as the most powerful and emotionally grounded member of the group.</p>
+            
+            <div class="article-image">
+                <img src="BMN-15579_R.jpg" alt="Reed and Sue">
+                <p class="image-caption">The emotional core of the film rests on the relationship between Reed Richards and Sue Storm.</p>
+            </div>
+            
+            <p>Joseph Quinn brings a youthful, impulsive energy to <strong>Johnny Storm</strong>, while Ebon Moss-Bachrach takes on the tragic and heroic role of <strong>Ben Grimm</strong>. The Thing will be brought to life through a combination of physical performance and cutting-edge CGI, aiming for a look that is both rocky and expressive.</p>
+
+            <div class="highlight-box">
+                <h3>Cosmic Threats & Galactus</h3>
+                <div class="article-image">
+                    <img src="AJF1240_TRL_comp_SPI_v0054.1042_R.jpg" alt="Cosmic Energy">
+                    <p class="image-caption">Visual effects testing for the cosmic rays that grant the team their abilities.</p>
+                </div>
+                <p>While the film focuses on the family, the stakes are undeniably cosmic. Ralph Ineson has been cast as the world-devourer <strong>Galactus</strong>, with Julia Garner appearing as the <strong>Shalla-Bal</strong> version of the Silver Surfer. This setup suggests that the Fantastic Four's "first steps" will immediately put them in the path of one of the most formidable entities in the Marvel multiverse.</p>
+            </div>
+
+            <h2>The Core Cast</h2>
+            <ul class="cast-grid">
+                <li>
+                    <strong>Pedro Pascal</strong>
+                    <span>as Reed Richards / Mr. Fantastic, the brilliant leader of the team.</span>
+                </li>
+                <li>
+                    <strong>Vanessa Kirby</strong>
+                    <span>as Sue Storm / The Invisible Woman, the heart and power of the family.</span>
+                </li>
+                <li>
+                    <strong>Joseph Quinn</strong>
+                    <span>as Johnny Storm / The Human Torch, the hot-headed younger brother.</span>
+                </li>
+                <li>
+                    <strong>Ebon Moss-Bachrach</strong>
+                    <span>as Ben Grimm / The Thing, Reed's loyal and powerful best friend.</span>
+                </li>
+                <li>
+                    <strong>Ralph Ineson</strong>
+                    <span>as Galactus, the celestial entity that threatens to consume worlds.</span>
+                </li>
+                <li>
+                    <strong>Julia Garner</strong>
+                    <span>as Shalla-Bal / Silver Surfer, the herald of Galactus.</span>
+                </li>
+            </ul>
+
+            <h2>A Foundation for Phase Six</h2>
+            <p><em>The Fantastic Four: First Steps</em> is poised to be a cornerstone of the MCU's future. By establishing these characters in their own unique setting before potentially bringing them into the broader multiverse, Marvel is giving them the room they need to breathe and become the icons they were always meant to be. The journey begins in 2025, and it's a step toward a much larger universe.</p>
+
+            <h2 class="gallery-title">Production Gallery</h2>
+            <div class="gallery">
+                <div class="gallery-item"><img src="BBL7000_TRL_comp_DDO_v0113.1255_R.jpg" alt="Production Still 1"></div>
+                <div class="gallery-item"><img src="BMN-10384_R2.jpg" alt="Production Still 2"></div>
+                <div class="gallery-item"><img src="BMN-12432_R.jpg" alt="Production Still 3"></div>
+                <div class="gallery-item"><img src="BMN-14200_R.jpg" alt="Production Still 4"></div>
+                <div class="gallery-item"><img src="BMN-14489_R.jpg" alt="Production Still 5"></div>
+                <div class="gallery-item"><img src="BMN-17818_R.jpg" alt="Production Still 6"></div>
+                <div class="gallery-item"><img src="BBF1400_comp_DDO_v0129.1020_R.jpg" alt="Production Still 7"></div>
+                <div class="gallery-item"><img src="BBL1140_TRL_comp_DDO_v0125.1285_R.jpg" alt="Production Still 8"></div>
+                <div class="gallery-item"><img src="BBL7065_TRL_comp_DDO_v0067.1048_R2.jpg" alt="Production Still 9"></div>
+                <div class="gallery-item"><img src="BFR1560_TRL_comp_DDO_v0066.1036_R.jpg" alt="Production Still 10"></div>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Cinema Universe. "The Fantastic Four" and related properties are trademarks of Marvel Studios.</p>
+    </footer>
+
+</body>
+</html>
